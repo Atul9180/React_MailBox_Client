@@ -44,6 +44,16 @@ Efficiently manage your expenses with this React-based expense tracking applicat
 ## Folder Structure
 The project follows a structured organization:
 
+- `/public`: Contains the index.html and other public assets.
+- `/src`: Main application source code.
+  - `/assets`: Assets like images, icons, etc.
+  - `/components`: Modular components grouped by functionality.
+  - `/services`: Firebase configuration and other external services.
+  - `/store`: Redux store setup, actions, and reducers.
+  - `/utils`: Utility functions.
+  - `App.js`, `index.js`: Main application files.
+
+```plaintext
 expense-tracker-app/
 │
 ├── public/
@@ -84,7 +94,7 @@ expense-tracker-app/
 ├── package.json
 ├── README.md
 └── ...
-
+```
 
 ## Contributing:
 Contributions are welcome! Feel free to fork the repository and submit pull requests.
