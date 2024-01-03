@@ -1,47 +1,56 @@
 
 ## Demo Link: 
 
-# React_Firebase_Expense_Tracker:
-React-based, Firebase-powered solution for managing expenses. Features user-specific records, visualizations, and easy report downloads.
-- **Create React App (CRA):** Bootstrapping the React application.
-- **Firebase:** Utilized for authentication, Firestore for storage, and Firebase Storage for file storage.
-- **Chart.js:** Rendering interactive charts for expense visualization.
-- **PrimeReact:** UI components library for a polished interface.
-- **React Redux & Redux Toolkit:** State management for efficient data flow.
-- **React Toastify:** Providing notifications for user interactions.
+## MailBox Client Application:
 
+#### Introduction
+The MailBox Client Application is a modern, user-friendly email management system designed to provide a seamless communication experience. It's built to offer essential email functionalities in an intuitive interface.
 
-# React Firebase ExpenseTracker:
-Efficiently manage your expenses with this React-based expense tracking application powered by Firebase. 
+#### Tech Stack
 
-## Features:
+##### Frontend:
+Vite (React framework)
+React Router DOM (navigation)
+Redux Toolkit (state management)
+React Mailbox (component library for email UI)
+Tailwind CSS (styling)
 
-- - **Authentication:** Firebase authentication for secure user login/signup.
-- **Expense Management:** Add, edit, categorize expenses.
-- **Visualization:** Visual representation of expenses via charts.
-- **Data Storage:** Firestore to store expense data securely.
-- **UI Components:** PrimeReact components for a sleek interface.
-- **State Management:** Redux Toolkit for efficient state handling.
-- **Notifications:** React Toastify for user-friendly notifications.
-- **Download Reports:** Easily download comprehensive expense reports.
+##### Backend:
+Node.js
+Express (server-side framework)
+Nodemailer (for email interactions)
+IMAP/POP3 libraries for email fetching
+Potentially Firebase for authentication and database
 
-## Setup:
+#### Functionalities:
+
+###### Email Viewing:
+Display emails in a clear and organized inbox
+Support different email formats (plain text, HTML)
+Enable viewing of attachments
+
+###### Email Composition:
+Provide a user-friendly interface for composing new emails
+Support rich text formatting, attachments, and spell-checking
+
+###### Email Sending:
+Securely send emails using Nodemailer or similar libraries
+Handle potential errors and provide feedback to the user
+
+###### Search:
+Implement efficient search functionality for locating emails
+Allow filtering by sender, recipient, subject, date, etc.
+
+###### Account Management:
+Support multiple email accounts
+Allow users to add, edit, and remove accounts
+
+### Setup:
 1. Clone the repository.
 2. Install dependencies: `npm install`.
 3. Run the app: `npm start`.
 
-## Usage:
-- Sign up or log in to access personalized expense tracking.
-- Add, edit, and categorize expenses effortlessly.
-- Visualize spending habits with detailed charts.
-- Download reports for convenient financial analysis.
-
-## Technologies Used:
-- React
-- Firebase
-- Chart.js
-
-## Folder Structure
+### Folder Structure
 The project follows a structured organization:
 
 - `/public`: Contains the index.html and other public assets.
@@ -68,7 +77,7 @@ expense-tracker-app/
 │   │   │   └── ...
 │   │   ├── Dashboard/
 │   │   │   └── ...
-│   │   ├── Expenses/
+│   │   ├── Users/
 │   │   │   └── ...
 │   │   └── ...
 │   │
