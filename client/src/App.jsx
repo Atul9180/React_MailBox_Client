@@ -1,26 +1,23 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import Layout from "./components/Layout.jsx";
+import { Home, Login, Signup, Profile, PageNotFound } from "./pages";
 
-function App() {
-  const [count, setCount] = useState(0);
-
+const App = () => {
   return (
-    <>
-      <div className="border">
-        <img src={viteLogo} className="logo" alt="Vite logo" />
-
-        <img src={reactLogo} className="logo react" alt="React logo" />
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card border">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
-    </>
+    <Router>
+      <ToastContainer />
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </Layout>
+    </Router>
   );
-}
+};
 
 export default App;
