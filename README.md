@@ -1,113 +1,59 @@
 
 ## Demo Link: 
 
-## MailBox Client Application:
+# MERN Authentication :
+This is a starter app for a MERN stack application with authentication. This is for a SPA (Single Page Application) workflow that uses the [Vite](https://vite.dev) Build tool. 
 
-#### Introduction
-The MailBox Client Application is a modern, user-friendly email management system designed to provide a seamless communication experience. It's built to offer essential email functionalities in an intuitive interface.
+<img width="960" height="550" alt="Screenshot 2024-01-10 220639" src="https://github.com/Atul9180/React_MailBox_Client/assets/110973046/1eb62925-85c2-402f-8ce6-821acee28500">
 
-#### Tech Stack
+<img width="960" height="550" alt="Screenshot 2024-01-10 220803" src="https://github.com/Atul9180/React_MailBox_Client/assets/110973046/dc86e2c2-5a4e-4aad-b87f-174aa7495cba">
 
-##### Frontend:
-Vite (React framework)
-React Router DOM (navigation)
-Redux Toolkit (state management)
-React Mailbox (component library for email UI)
-Tailwind CSS (styling)
+<img width="960" height="550" alt="Screenshot 2024-01-10 220823" src="https://github.com/Atul9180/React_MailBox_Client/assets/110973046/cb7de1f8-496e-4bbe-aa1c-c420c9b694eb">
 
-##### Backend:
-Node.js
-Express (server-side framework)
-Nodemailer (for email interactions)
-IMAP/POP3 libraries for email fetching
-Potentially Firebase for authentication and database
+<img width="960" height="550" alt="Screenshot 2024-01-10 221007" src="https://github.com/Atul9180/React_MailBox_Client/assets/110973046/4e3c9cd1-e0be-4f0b-a38e-b254ee9aff61">
 
-#### Functionalities:
+It includes the following:
 
-###### Email Viewing:
-Display emails in a clear and organized inbox
-Support different email formats (plain text, HTML)
-Enable viewing of attachments
+- Backend API with Express & MongoDB
+- Routes for auth, logout, register, profile, update profile
+- JWT authentication stored in HTTP-only cookie
+- Protected routes and endpoints
+- Custom middleware to check JSON web token and store in cookie
+- Custom error middleware
+- React frontend to register, login, logout, view profile, and update profile
+- React Bootstrap UI library
+- React Toastify notifications
 
-###### Email Composition:
-Provide a user-friendly interface for composing new emails
-Support rich text formatting, attachments, and spell-checking
+## Usage
 
-###### Email Sending:
-Securely send emails using Nodemailer or similar libraries
-Handle potential errors and provide feedback to the user
+- Create a MongoDB database and obtain your `MongoDB URI` - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register)
+- Create a PayPal account and obtain your `Client ID` - [PayPal Developer](https://developer.paypal.com/)
 
-###### Search:
-Implement efficient search functionality for locating emails
-Allow filtering by sender, recipient, subject, date, etc.
+### Env Variables
 
-###### Account Management:
-Support multiple email accounts
-Allow users to add, edit, and remove accounts
+Rename the `.env.example` file to `.env` and add the following
 
-### Setup:
-1. Clone the repository.
-2. Install dependencies: `npm install`.
-3. Run the app: `npm start`.
-
-### Folder Structure
-The project follows a structured organization:
-
-- `/public`: Contains the index.html and other public assets.
-- `/src`: Main application source code.
-  - `/assets`: Assets like images, icons, etc.
-  - `/components`: Modular components grouped by functionality.
-  - `/services`: Firebase configuration and other external services.
-  - `/store`: Redux store setup, actions, and reducers.
-  - `/utils`: Utility functions.
-  - `App.js`, `index.js`: Main application files.
-
-```plaintext
-expense-tracker-app/
-│
-├── public/
-│   ├── index.html
-│   └── ...
-│
-├── src/
-│   ├── assets/
-│   │   └── ...
-│   ├── components/
-│   │   ├── Auth/
-│   │   │   └── ...
-│   │   ├── Dashboard/
-│   │   │   └── ...
-│   │   ├── Users/
-│   │   │   └── ...
-│   │   └── ...
-│   │
-│   ├── services/
-│   │   ├── firebase.js
-│   │   └── ...
-│   │
-│   ├── store/
-│   │   ├── actions/
-│   │   │   └── ...
-│   │   ├── reducers/
-│   │   │   └── ...
-│   │   └── configureStore.js
-│   │
-│   ├── utils/
-│   │   └── ...
-│   │
-│   ├── App.js
-│   ├── index.js
-│   └── ...
-│
-├── .gitignore
-├── package.json
-├── README.md
-└── ...
+```
+NODE_ENV = development
+PORT = 5000
+MONGO_URI = your mongodb uri
+JWT_SECRET = 'abc123'
 ```
 
-## Contributing:
-Contributions are welcome! Feel free to fork the repository and submit pull requests.
+### Run 
 
-## License:
-This project is licensed under the [MIT License](link-to-license).
+```
 
+# Run client (:3000) & server (:5000)
+npm run dev
+
+# Run server only
+npm run server
+```
+
+## Run server and client :
+
+go to root directory in terminal :
+```
+npm run start
+```
