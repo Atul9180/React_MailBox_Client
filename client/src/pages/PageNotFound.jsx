@@ -1,12 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaSignInAlt } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const PageNotFound = () => {
+  const { userInfo } = useSelector((state) => state.auth);
   const navigate = useNavigate();
-
-  const handleHome = () => {
-    navigate("/");
-  };
 
   return (
     <div className="text-center  text-black w-1">
@@ -18,13 +16,23 @@ const PageNotFound = () => {
         Page Not Available.
       </p>
       <div className="text-center mt-4 text-white">
-        <button
-          className="btn border mx-2 font-size-btn"
-          onClick={handleHome}
-          style={{ fontSize: "20px", fontWeight: "bold" }}
-        >
-          <FaHome /> Home
-        </button>
+        {userInfo ? (
+          <button
+            className="btn border mx-2 font-size-btn"
+            onClick={() => navigate("/")}
+            style={{ fontSize: "20px", fontWeight: "bold" }}
+          >
+            <FaHome /> Home
+          </button>
+        ) : (
+          <button
+            className="btn border mx-2 font-size-btn"
+            onClick={() => navigate("/login")}
+            style={{ fontSize: "20px", fontWeight: "bold" }}
+          >
+            <FaSignInAlt /> Login
+          </button>
+        )}
       </div>
     </div>
   );

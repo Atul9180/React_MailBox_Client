@@ -1,17 +1,15 @@
-import { Row } from "react-bootstrap";
-
 const Footer = () => {
   return (
     <footer
-      className="fixed-bottom"
+      className=""
       style={{
         backgroundColor: "#dcdcdc7d",
         boxShadow: "0 -4px 6px -6px #000",
       }}
     >
-      <Row className="p-2">
+      <div className="p-1 mt-5">
         <h5 className="text-center">Made with &hearts; by Atul</h5>
-      </Row>
+      </div>
     </footer>
   );
 };

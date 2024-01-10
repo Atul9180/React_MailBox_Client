@@ -1,12 +1,43 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
+
+import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
+import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { useSelector, useDispatch } from "react-redux";
+
+import { logout } from "../redux/slices/authSlice";
+import { useLogoutMutation } from "../redux/slices/usersApiSlice";
 
 const Header = () => {
+  const { userInfo } = useSelector((state) => state.auth);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [logoutApiCall] = useLogoutMutation();
+
+  const logoutHandler = async () => {
+    try {
+      //destroy cookie
+      await logoutApiCall().unwrap();
+      //destroy local storage auth data
+      dispatch(logout());
+      toast.success("Logged out successfully");
+      navigate("/login");
+    } catch (error) {
+      toast.error(error);
+    }
+  };
+
   return (
-    <Navbar expand="lg" className="bg-body-tertiary shadow" sticky="top">
+    <Navbar
+      expand="lg"
+      className="bg-body-tertiary shadow"
+      sticky="top"
+      collapseOnSelect
+    >
       <Container>
         <Navbar.Brand as={Link} to="/">
           MailBox Client
@@ -14,24 +45,28 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Nav>
-            <Nav.Link as={Link} to="/login">
-              Login
-            </Nav.Link>
-            <Nav.Link as={Link} to="/signup">
-              Signup
-            </Nav.Link>
-
-            <NavDropdown title="Profile" id="basic-nav-dropdown">
-              <NavDropdown.Item as={Link} to="/profile">
-                Profile
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/account">
-                Account
-              </NavDropdown.Item>
-
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#">Logout</NavDropdown.Item>
-            </NavDropdown>
+            {userInfo ? (
+              <>
+                <NavDropdown title={userInfo?.name} id="username">
+                  <NavDropdown.Item as={Link} to="/profile">
+                    Profile
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item onClick={logoutHandler}>
+                    <FaSignOutAlt /> Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </>
+            ) : (
+              <>
+                <Nav.Link as={Link} to="/login">
+                  <FaSignInAlt /> Login
+                </Nav.Link>
+                <Nav.Link as={Link} to="/signup">
+                  <FaSignOutAlt /> Signup
+                </Nav.Link>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
