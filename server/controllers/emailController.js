@@ -97,8 +97,15 @@ const getTotalUnreadMessages = asyncHandler(async (req, res) => {
 const markEmailAsRead = asyncHandler(async (req, res) => {
   const emailId = req.params.id;
   const email = await Email.findById({ _id: emailId });
-  if (email) {
-    email.read = true;
+  if (!email) {
+    return res.status(404).json({ error: "Email not found" });
+  }
+  if (email.read) {
+    return res.status(400).json({ error: "Email already marked as read" });
+  }
+
+  email.read = true;
+  try {
     await email.save();
 
     // Return the updated email and the total number of unread messages
@@ -107,8 +114,8 @@ const markEmailAsRead = asyncHandler(async (req, res) => {
       read: false,
     });
     res.json({ email, totalUnread });
-  } else {
-    res.status(404).json({ error: "Email not found" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to mark email as read" });
   }
 });
 
@@ -117,12 +124,17 @@ const markEmailAsRead = asyncHandler(async (req, res) => {
 // @access  Private
 const deleteEmail = asyncHandler(async (req, res) => {
   const emailId = req.params.id;
-  const email = await Email.findById({ _id: emailId });
-  if (email) {
-    await email.remove();
-    res.json({ message: "Email deleted successfully" });
-  } else {
-    res.status(404).json({ error: "Email not found" });
+  try {
+    const email = await Email.findById({ _id: emailId });
+    if (email) {
+      await Email.deleteOne({ _id: emailId });
+      res.json({ message: "Email deleted successfully" });
+    } else {
+      res.status(404).json({ error: "Email not found" });
+    }
+  } catch (error) {
+    res.status(500);
+    throw new Error("Something went wrong..");
   }
 });
 
