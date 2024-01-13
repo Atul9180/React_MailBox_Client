@@ -7,13 +7,14 @@ const emailSchema = mongoose.Schema(
     subject: { type: String, required: true },
     body: { type: String, required: true },
     attachments: [{ type: String }],
+    read: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
 
 // Indexing the 'sender', 'receiver' field
-emailSchema.index({ sender: 1 });
-emailSchema.index({ receiver: 1 });
+// emailSchema.index({ sender: 1 });
+// emailSchema.index({ receiver: 1 });
 
 const Email = mongoose.model("Email", emailSchema);
 export default Email;
