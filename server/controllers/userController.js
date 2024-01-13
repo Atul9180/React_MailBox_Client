@@ -76,11 +76,10 @@ const logoutUser = (req, res) => {
 // @route   GET /api/users/profile
 // @access  Private
 const getUserProfile = asyncHandler(async (req, res) => {
-  console.log(req.user._id);
   const user = await User.findById(req.user._id);
 
   if (user) {
-    res.json({
+    res.status(200).json({
       _id: user._id,
       name: user.name,
       email: user.email,
@@ -116,7 +115,6 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("User not found");
   }
-  res.status(200).json({ message: "Profile updated successfully" });
 });
 
 export {
