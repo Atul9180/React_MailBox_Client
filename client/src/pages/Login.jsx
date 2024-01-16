@@ -17,25 +17,25 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const { userInfo } = useSelector((state) => state.auth);
-  const [login, { isLoading }] = useLoginMutation();
+  const [login, { isLoading, isError }] = useLoginMutation();
 
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
       if (!email || !password) {
-        toast.error("all fields mandatory!");
+        toast.error("all field required!");
         return;
       }
 
       //unwrap the promise:
       const res = await login({ email, password }).unwrap();
-      // console.log(res);
+
       dispatch(setCredentials({ ...res }));
       toast.success("Login successful!");
       navigate("/");
     } catch (err) {
-      //console.log(err?.data?.message || err?.error);
-      toast.error(err?.data?.message);
+      if (isError) toast.error("Error: Unable to connect to the server");
+      else toast.error(err?.data?.message);
     }
   };
 

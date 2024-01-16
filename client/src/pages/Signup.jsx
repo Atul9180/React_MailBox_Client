@@ -16,7 +16,7 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const { userInfo } = useSelector((state) => state.auth);
-  const [signup, { isLoading }] = useSignupMutation();
+  const [signup, { isLoading, isError }] = useSignupMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -37,8 +37,8 @@ const Signup = () => {
       toast.success("Registered successfully!");
       navigate("/");
     } catch (err) {
-      console.log(err?.error);
-      toast.error(err?.data?.message);
+      if (isError) toast.error("Error: Unable to connect to the server");
+      else toast.error(err?.data?.message);
     }
   };
 

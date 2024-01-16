@@ -1,5 +1,5 @@
 import { styled, Drawer } from "@mui/material";
-import SidebarContent from "./SidebarContent.jsx";
+import SidebarContentItems from "./SidebarContentItems.jsx";
 
 const StyledDrawer = styled(Drawer)({});
 const Sidebar = ({ sidebarOpen }) => {
@@ -7,7 +7,7 @@ const Sidebar = ({ sidebarOpen }) => {
     <StyledDrawer
       anchor="left"
       open={sidebarOpen}
-      hideBackdrop="true"
+      hideBackdrop={true}
       ModalProps={{
         keepMounted: true, // Better open performance on mobile.
       }}
@@ -22,7 +22,7 @@ const Sidebar = ({ sidebarOpen }) => {
         },
       }}
     >
-      <SidebarContent />
+      <SidebarContentItems />
     </StyledDrawer>
   );
 };
